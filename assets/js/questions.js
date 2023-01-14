@@ -11,14 +11,14 @@ var questions = [
     answer: "Both the <head> section and the <body> section",
   },
   {
-    question: "What is the correct syntax for referring to an external script called 'xxx.js'?",
-    choices: ["<script name = 'xxx.js'>", "<script href = 'xxx.js'>","<script src = 'xxx.js'>",],
-    answer: "<script src = 'xxx.js'>",
+    question: "Arrays in JavaScript are defined by which of the following statements?",
+    choices: ["It is an ordered list of values", "It is an ordered list of objects","It is an ordered list of string","It is an ordered list of functions",],
+    answer: "It is an ordered list of values",
   },
   {
     question: "The external JavaScript file must contain the <script> tag.",
     choices: ["True", "False",],
-    answer: "True",
+    answer: "False",
   },
   {
     question: "How do you write 'Hello World' in an alert box?",

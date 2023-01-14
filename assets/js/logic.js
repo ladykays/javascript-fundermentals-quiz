@@ -5,6 +5,7 @@ var startButton = document.querySelector("#start");
 var questionsContainer = document.querySelector("#questions");
 var questionEl = document.querySelector("#question-title")
 var choices = document.querySelector("#choices");
+var response = document.querySelector(".option")
 
 
 
@@ -15,8 +16,10 @@ var shuffledQuestions = questions.sort(function() {
 });
 
 
-// A start button that when clicked the timer starts
+//Event Listners
 startButton.addEventListener("click", startGame);
+
+
 
 
 // Function to start game starts here
@@ -47,17 +50,40 @@ function countdown() {
 }// Function for countdown timer ends
 
 
-function showQuestion(i) {
-  //console.log(questions[i]);
-  questionEl.textContent = JSON.stringify(shuffledQuestions[currentQuestionIndex].question);
 
-  for (var j = 0; j < shuffledQuestions[currentQuestionIndex].choices.length; j++) {
-    //console.log(shuffledQuestions[currentQuestionIndex].choices[j])
+// Function for showQuestions starts 
+function showQuestion() {
+  // Clear any previous options
+  choices.innerHTML = "";
+
+  // Get current question
+  var currentQuestion = shuffledQuestions[currentQuestionIndex];
+
+  // Update question title
+  questionEl.textContent = currentQuestion.question;
+
+  // Loop through choices and create buttons
+  for (var j = 0; j < currentQuestion.choices.length; j++) {
     var optionsButton = document.createElement("button"); // Creates button
-    optionsButton.textContent = shuffledQuestions[currentQuestionIndex].choices[j];
+    optionsButton.textContent = currentQuestion.choices[j];
     choices.appendChild(optionsButton); // Append new button to choices
+    optionsButton.setAttribute("class", "option"); // Adds a class to the option button
+    optionsButton.addEventListener("click", function() {
+      checkAnswer(event, currentQuestionIndex)
+    });
+  }
+} // Function for showQuestions ends
+
+
+// Function for checkAnswer starts 
+function checkAnswer(event, index) {
+  response = event.target.textContent; //set value of response to the the text content of the button clicked
+  if (response === shuffledQuestions[index].answer) {
+    console.log("correct");
+  } else {
+    console.log("opps!");
   }
   currentQuestionIndex++;
-}
-
+  showQuestion();
+} // Function for checkAnswer ends
 
