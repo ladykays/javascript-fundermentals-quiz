@@ -116,3 +116,10 @@ function checkAnswer(event) {
   showQuestion();
   }
 }
+
+// Function for endQuiz starts
+function endQuiz() {
+  questionsContainer.setAttribute("class", "hide"); // Hide question screen
+  endScreen.classList.remove("hide"); // Show end screen
+  finalScore.textContent = score;
+}
