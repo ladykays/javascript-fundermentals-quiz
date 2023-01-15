@@ -11,9 +11,11 @@ var initialsInput = document.querySelector("#initials");
 var submitButton = document.querySelector("#submit");
 var feedback = document.querySelector("#feedback");
 
-
+var score = 0;
+var wrong = 0;
 var timeLeft = 90; //set 90 second timer
 var currentQuestionIndex = 0;
+
 // Shuffle the questions so they show in random order
 var shuffledQuestions = questions.sort(function() {
   return 0.5 - Math.random();
@@ -61,13 +63,40 @@ function showQuestion() {
   // Update question title
   questionEl.textContent = currentQuestion.question;
 
-  // Loop through choices and create buttons
-  for (var j = 0; j < currentQuestion.choices.length; j++) {
-    var optionsButton = document.createElement("button"); // Creates button
-    optionsButton.textContent = currentQuestion.choices[j];
-    optionsButton.setAttribute("class", "option");
-    optionsButton.addEventListener("click", checkAnswer);
-    choices.appendChild(optionsButton);
+  // Loop through choices and create buttons for each
+  for (let i = 0; i < currentQuestion.choices.length; i++) {
+    var choiceBtn = document.createElement("button");
+    choiceBtn.setAttribute("class", "choice"); // Give a classname of choice to the new button
+    choiceBtn.setAttribute("value", currentQuestion.choices[i]);
+    choiceBtn.textContent = currentQuestion.choices[i];
+    choiceBtn.addEventListener("click", function() { // Add a click event listner to button
+      if (currentQuestion.choices[i] === currentQuestion.answer) {
+        score++;
+        feedback.textContent = "Correct!";
+        feedback.setAttribute("class", "feedback show correct");
+        // Hide feedback after 1 second
+        setTimeout(function() {
+          feedback.setAttribute("class", "feedback hide");
+        }, 1000);
+      } else {
+        wrong++;
+        timeLeft = timeLeft - 10;
+        feedback.textContent = "Wrong!";
+        feedback.setAttribute("class", "feedback show wrong");
+        setTimeout(function() {
+          feedback.setAttribute("class", "feedback hide");
+        }, 1000);
+      }
+      // Check if all questions have been answered or timer reaches 0
+      currentQuestionIndex++;
+      // Check if the currentQuestionIndex is equal to the length of the shufled questions
+      if (currentQuestionIndex === shuffledQuestions.length) {
+        endQuiz();
+      } else {
+        showQuestion();
+      }
+    });
+    choices.appendChild(choiceBtn); // Append choiceBtn to the choices element
   }
 }
 
