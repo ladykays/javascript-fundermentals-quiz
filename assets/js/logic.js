@@ -24,7 +24,13 @@ var shuffledQuestions = questions.sort(function() {
 
 //Event Listners
 startButton.addEventListener("click", startGame);
-
+submitButton.addEventListener("click", function(){
+  if(initialsInput.value){
+    saveScore();
+  }else{
+    alert('Enter your initials to save your score');
+  }
+});
 
 // Function to start game starts here
 function startGame() {
@@ -71,7 +77,7 @@ function showQuestion() {
     choiceBtn.textContent = currentQuestion.choices[i];
     choiceBtn.addEventListener("click", function() { // Add a click event listner to button
       if (currentQuestion.choices[i] === currentQuestion.answer) {
-        score++;
+        score += 10;
         feedback.textContent = "Correct!";
         feedback.setAttribute("class", "feedback show correct");
         // Hide feedback after 1 second
@@ -101,54 +107,19 @@ function showQuestion() {
 }
 
 
-// Function for checkAnswer starts 
-function checkAnswer(event, index) {
-  response = event.target.textContent; //set value of response to the the text content of the button clicked
-  console.log(response);
-  if (response === shuffledQuestions[index].answer) {
-    console.log("correct");
-  } else {
-    console.log("opps!");
-  }
-  currentQuestionIndex++;
-  showQuestion();
-} // Function for checkAnswer ends
-
-
-// Function for checkAnswer starts
-function checkAnswer(event) {
-  // Get the text of the button that was clicked
-  var selectedOption = event.target.textContent;
-
-  // Check if the answer is correct
-  if (selectedOption === shuffledQuestions[currentQuestionIndex].answer) {
-    // If correct, increase score
-    score++;
-    feedback.textContent = "Correct!";
-    feedback.setAttribute("class", "feedback show");
-  } else {
-    // If incorrect, decrease time
-    timeLeft -= 10;
-    wrong++;
-    feedback.textContent = "Incorrect. The correct answer was: " + shuffledQuestions[currentQuestionIndex].answer;
-    feedback.setAttribute("class", "feedback show");
-  }
-
-  setTimeout(function() {
-    feedback.setAttribute("class", "feedback hide");
-  }, 1000);
-    
-  currentQuestionIndex++;
-  if (currentQuestionIndex === shuffledQuestions.length) {
-  endQuiz();
-  } else {
-  showQuestion();
-  }
+// Function endQuiz starts
+function endQuiz() {
+  questionsContainer.classList.add("hide");
+  endScreen.classList.remove("hide");
+  finalScore.textContent = score;
 }
 
-// Function for endQuiz starts
-function endQuiz() {
-  questionsContainer.setAttribute("class", "hide"); // Hide question screen
-  endScreen.classList.remove("hide"); // Show end screen
-  finalScore.textContent = score;
+// Function saveScore starts
+function saveScore() {
+  var initials = initialsInput.value;
+  var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+  var newScore = { initials: initials, score: score };
+  highscores.push(newScore);
+  localStorage.setItem("highscores", JSON.stringify(highscores));
+  window.location.href = "highscores.html";
 }
