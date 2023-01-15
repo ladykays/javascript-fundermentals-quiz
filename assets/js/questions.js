@@ -17,8 +17,8 @@ var questions = [
   },
   {
     question: " Which of the following is not a framework?",
-    choices: [" JavaScript .NET", "JavaScript", "Cocoa JS", "jQuery",],
-    answer: " JavaScript",
+    choices: ["JavaScript .NET", "JavaScript", "Cocoa JS", "jQuery",],
+    answer: "JavaScript",
   },
   {
     question: "Which of the following is the property that is triggered in response to JS errors?",

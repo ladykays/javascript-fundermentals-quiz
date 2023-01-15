@@ -15,6 +15,8 @@ var score = 0;
 var wrong = 0;
 var timeLeft = 90; //set 90 second timer
 var currentQuestionIndex = 0;
+var correctSound = new Audio("assets/sfx/correct.wav");
+var incorrectSound = new Audio("assets/sfx/incorrect.wav");
 
 // Shuffle the questions so they show in random order
 var shuffledQuestions = questions.sort(function() {
@@ -78,6 +80,7 @@ function showQuestion() {
     choiceBtn.addEventListener("click", function() { // Add a click event listner to button
       if (currentQuestion.choices[i] === currentQuestion.answer) {
         score += 10;
+        correctSound.play();
         feedback.textContent = "Correct!";
         feedback.setAttribute("class", "feedback show correct");
         // Hide feedback after 1 second
@@ -86,6 +89,7 @@ function showQuestion() {
         }, 1000);
       } else {
         wrong++;
+        incorrectSound.play();
         timeLeft = timeLeft - 10;
         feedback.textContent = "Wrong!";
         feedback.setAttribute("class", "feedback show wrong");
