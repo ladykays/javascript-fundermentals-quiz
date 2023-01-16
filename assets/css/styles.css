@@ -101,8 +101,12 @@ li:nth-child(odd) {
 
 
 /* Media query for small screens */
-@media screen and (max-width: 550px) {
-  .wrapper {
+@media screen and (max-width: 500px) {
+  .wrapper{
     text-align: center;
+  }
+  #highscores {
+    text-align: left;
+    padding-left: 25%;
   }
 }

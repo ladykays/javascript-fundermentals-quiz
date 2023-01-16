@@ -72,10 +72,11 @@ function showQuestion() {
   questionEl.textContent = currentQuestion.question;
 
   // Loop through choices and create buttons for each
-  for (var i = 0; i < currentQuestion.choices.length; i++) {
+  for (let i = 0; i < currentQuestion.choices.length; i++) {
     var choiceBtn = document.createElement("button");
     choiceBtn.setAttribute("class", "choice"); // Give a classname of choice to the new button
     choiceBtn.setAttribute("value", currentQuestion.choices[i]);
+    choiceBtn.style.width = "50%"; // so all the buttons attached to a question have the same width
     choiceBtn.textContent = currentQuestion.choices[i];
     choiceBtn.addEventListener("click", function() { // Add a click event listner to button
       if (currentQuestion.choices[i] === currentQuestion.answer) {
