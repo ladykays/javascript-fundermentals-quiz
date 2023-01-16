@@ -7,8 +7,8 @@ var questions = [
   },
   {
     question: " What is JavaScript?",
-    choices: ["JavaScript is a scripting language used to make the websites interactive", "JavaScript is an assembly language used to make websites interactive", "JavaScript is an assembly language used to make websites interactive", "None of the above",],
-    answer: "JavaScript is a scripting language used to make the website interactive",
+    choices: ["JavaScript is a scripting language used to make websites interactive", "JavaScript is an assembly language used to make websites interactive", "JavaScript is an assembly language used to make websites interactive", "None of the above",],
+    answer: "JavaScript is a scripting language used to make websites interactive",
   },
   {
     question: "Which of the following is correct about JavaScript?",
