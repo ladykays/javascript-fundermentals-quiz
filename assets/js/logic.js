@@ -72,7 +72,7 @@ function showQuestion() {
   questionEl.textContent = currentQuestion.question;
 
   // Loop through choices and create buttons for each
-  for (let i = 0; i < currentQuestion.choices.length; i++) {
+  for (var i = 0; i < currentQuestion.choices.length; i++) {
     var choiceBtn = document.createElement("button");
     choiceBtn.setAttribute("class", "choice"); // Give a classname of choice to the new button
     choiceBtn.setAttribute("value", currentQuestion.choices[i]);
