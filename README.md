@@ -24,6 +24,9 @@ https://ladykays.github.io/javascript-fundermentals-quiz
 * https://www.sitepoint.com/simple-javascript-quiz/
 * https://www.youtube.com/watch?v=DFhmNLKwwGw
 * https://www.youtube.com/watch?v=IlnZxLeQezI
+* https://www.sanfoundry.com/1000-javascript-questions-answers/
+* https://www.w3schools.com/js/js_quiz.asp
+
 
 
 ## Licence
